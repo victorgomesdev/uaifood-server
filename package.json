@@ -1,0 +1,22 @@
+{
+  "name": "uaifood-server",
+  "version": "1.0.0",
+  "description": "Servidor para o processamento dos dados do app Uaifood",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node build/index.js"
+  },
+  "author": "Victor Gomes Nogueira",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/ws": "^8.5.10",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "@types/node": "^20.11.30",
+    "express": "^4.19.2",
+    "ws": "^8.16.0"
+  }
+}
