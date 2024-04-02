@@ -1,0 +1,17 @@
+Rotas:
+
+Cadastro de usuário
+
+Edição de dados de usuário
+
+Recuperação de daos de usuário
+
+Cadastro de robôs
+
+Edição de robôs
+
+Recuperação de dados de robôs
+
+Controles
+
+Implementar a logica de armazenar a midia
