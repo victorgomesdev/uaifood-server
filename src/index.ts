@@ -12,6 +12,6 @@
 // server.listen(3000, ()=> console.log('SERVER RUNNING'))
 
 import Db from "./db/mongo.js";
-const de = new Db('mongodb+srv://uaifood-server:uaifood2024@uaifood-server.pzhenlk.mongodb.net/?retryWrites=true&w=majority&appName=Uaifood')
+const db = new Db('mongodb+srv://uaifood-server:uaifood2024@uaifood.pzhenlk.mongodb.net/?retryWrites=true&w=majority&appName=Uaifood')
 
-de.connect()
+db.connect().then(()=> db.addDevice({_id: 1, name: 'robo1', description: 'teste', owner_id: 2, code: 5}))
