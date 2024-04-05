@@ -1,11 +1,11 @@
-type UserProps = {
+export type UserProps = {
     _id?: number
     name: string
     email: string
     password: string
 }
 
-type DeviceProps = {
+export type DeviceProps = {
     _id?: number
     code: number
     name: string
@@ -13,11 +13,12 @@ type DeviceProps = {
     owner_id: number
 }
 
-type LoginReq = {
+export type LoginReq = {
     email: string
     password: string
 }
 
-type Token = {
+export type Token = {
     eml: string
+    nam: string
 }

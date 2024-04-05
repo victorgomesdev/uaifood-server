@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
 import loginMiddleware from './auth/login'
 import authMiddleware from './auth/auth'
@@ -6,7 +6,7 @@ import env from '../env.json' with {type: 'json'}
 import Db from './db/mongo'
 
 const server = express()
-server.use(bodyParser.json())
+server.use(bodyParser.json()) // Transforma o body de todas as requisições em um json
 
 const db = new Db()
 
@@ -17,9 +17,11 @@ db.connect()
         process.exit()
     })
 
-    
-//Login de usuário
+// Rota para os usuários fazerem o login
+server.post('/login', (rq: Request, rs: Response)=>{
+    loginMiddleware(rq, rs, db)
+})
 
-
-
-server.listen(3000, () => console.log('SERVER RUNNING'))
+// Todas as requisições serão verificadas antes de prosseguirem
+server.use(authMiddleware)
+server.listen(3000, () => console.log('[SERVER] SERVER RUNNING AT 3000'))
