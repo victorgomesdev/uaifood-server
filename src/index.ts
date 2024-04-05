@@ -1,17 +1,25 @@
-// import express from 'express'
-// import bodyParser from 'body-parser'
-// import loginMiddleware from './auth/login'
+import express from 'express'
+import bodyParser from 'body-parser'
+import loginMiddleware from './auth/login'
+import authMiddleware from './auth/auth'
+import env from '../env.json' with {type: 'json'}
+import Db from './db/mongo'
 
-// const server = express()
-// server.use(bodyParser.json())
+const server = express()
+server.use(bodyParser.json())
 
-// //Login de usuário
-// server.post('/login', loginMiddleware)
+const db = new Db()
+
+db.connect()
+    .then(() => console.log('[DB] MONGODB CONECTADO'))
+    .catch((e) => {
+        console.log(`[DB] OCORREU UM ERRO AO CONECTAR: ${e}`)
+        process.exit()
+    })
+
+    
+//Login de usuário
 
 
-// server.listen(3000, ()=> console.log('SERVER RUNNING'))
 
-import Db from "./db/mongo.js";
-const db = new Db('mongodb+srv://uaifood-server:uaifood2024@uaifood.pzhenlk.mongodb.net/?retryWrites=true&w=majority&appName=Uaifood')
-
-db.connect().then(()=> db.addDevice({_id: 1, name: 'robo1', description: 'teste', owner_id: 2, code: 5}))
+server.listen(3000, () => console.log('SERVER RUNNING'))

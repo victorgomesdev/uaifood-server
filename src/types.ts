@@ -17,3 +17,7 @@ type LoginReq = {
     email: string
     password: string
 }
+
+type Token = {
+    eml: string
+}
