@@ -1,10 +1,10 @@
 Rotas:
 
-Cadastro de usuário
+Cadastro de usuário FEITO
 
 Edição de dados de usuário
 
-Recuperação de daos de usuário
+Recuperação de daos de usuário FEITO
 
 Cadastro de robôs
 
@@ -15,3 +15,5 @@ Recuperação de dados de robôs
 Controles
 
 Implementar a logica de armazenar a midia
+
+Verificar os códigos de status http

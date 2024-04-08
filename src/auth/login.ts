@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { sign } from 'jsonwebtoken'
-import env from '../../env.json' with {type: 'json'}
-import Db from "../db/mongo";
+import env from '../../env.json'
+import Db from "../db";
 
 export default async function loginMiddleware(req: Request, res: Response, db: Db) {
 
-    db.getUserData(req.body.email)
+    db.getUserData(req.body.id)
         .then((r) => {
 
             if (r != null) {
@@ -15,19 +15,21 @@ export default async function loginMiddleware(req: Request, res: Response, db: D
                     nam: r.name
                 },
                     env.SECRET_KEY,
-                    {
-                        expiresIn: 30,
-                        algorithm: 'HS256'
-                    })
+                )
 
-
-                res.status(200)
-                    .send({
+                res.status(200).setHeader("Content-Type", "application/json")
+                    .json({
                         id: r._id,
                         name: r.name,
                         email: r.email,
                         token: token
-                    }).setHeader("Content-Type", "application/json")
+                    })
+
+
             }
+        }).catch(() => {
+
+            res.status(404).setHeader("Content-Type", "application/json")
+                .json({ msg: "Não foi possível entrar, por favor tente mais tarde." })
         })
 }

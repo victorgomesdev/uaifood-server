@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb'
-import env from '../../env.json' with {type: 'json'}
+import env from '../../env.json' 
 import { UserProps } from '../types'
 import { DeviceProps } from '../types'
 
@@ -20,12 +20,6 @@ export default class Db {
     async connect() {
 
         await this.connection.connect()
-            .then(() => console.log('[DB_CONNECT]MONGODB CONECTADO'))
-            .catch((e) => {
-
-                console.warn(`[DB_CONNECTION]NÃO FOI POSSÍVEL CONECTAR DEVIDO: ${e}`)
-                process.exit()
-            })
 
     }
 
@@ -34,9 +28,9 @@ export default class Db {
         return await this.users.insertOne(user)
     }
 
-    async getUserData(email: string) {
+    async getUserData(id: number) {
 
-        return await this.users.findOne({ email: email })
+        return await this.users.findOne({ _id: id })
 
     }
 

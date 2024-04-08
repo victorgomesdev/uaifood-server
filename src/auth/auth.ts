@@ -1,7 +1,6 @@
 import { verify } from 'jsonwebtoken'
 import { Request, Response, NextFunction} from 'express'
-import env from '../../env.json' with {type: 'json'}
-import Db from '../db/mongo'
+import env from '../../env.json' 
 
 export default async function authMiddleware(req: Request, res: Response, next: NextFunction){
     
@@ -9,8 +8,6 @@ export default async function authMiddleware(req: Request, res: Response, next: 
 
     const verified = verify(token, env.SECRET_KEY)
 
-    if(verified){
-        //TODO impleementar a lógica aqui
-    }
+    console.log(verified)
     next()
 }
