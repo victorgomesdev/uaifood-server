@@ -10,27 +10,34 @@ export default async function loginMiddleware(req: Request, res: Response, db: D
 
             if (r != null) {
 
-                const token = sign({
+                const payload = JSON.stringify({
                     id: r._id,
-                    eml: r.email,
-                    nam: r.name
-                },
-                    env.SECRET_KEY,
-                )
+                    email: r.email,
+                    name: r.name
+                })
+
+                const token = sign(payload, env.SECRET_KEY)
 
                 res.status(200).setHeader("Content-Type", "application/json")
                     .json({
                         id: r._id,
                         name: r.name,
                         email: r.email,
-                        token: token
+                        token: token,
+                        acess: 'ALLOWED'
                     })
 
 
+            } else {
+                res.status(404)
+                    .setHeader("Content-Type", "application/json")
+                    .json({ msg: "Usuário não encontrado.", acess: 'DENIED' })
             }
-        }).catch(() => {
+        }).catch((e) => {
 
-            res.status(404).setHeader("Content-Type", "application/json")
+            res.status(500).setHeader("Content-Type", "application/json")
                 .json({ msg: "Não foi possível entrar, por favor tente mais tarde." })
+
+            console.log("[AUTH] ERRO DE LOGIN:", e)
         })
 }

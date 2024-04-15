@@ -4,16 +4,19 @@ import env from '../../env.json'
 
 export default async function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
-    //const { token } = req.body
-
     try {
 
-         const verified = verify(req.body.token, "HHJGHSVBCBF54B5841B251CV584B31FB5F1B2CV1N541NX2V1NF58G43")
+         const verified = verify(req.body.token, env.SECRET_KEY, { algorithms: ['HS256']})
          console.log(verified)
-        // next()
+        
+         if(verified){
+    
+         }
 
     } catch (e) {
-        console.log(e)
+        console.log("[AUTH] ERRO DE AUTENTICAÇÃO", e)
+        res.status(500)
+        .setHeader("Content-Type", "application/json")
     }
 
 }
