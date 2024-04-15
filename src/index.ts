@@ -6,7 +6,7 @@ import Db from './db'
 import createUserMiddleware from './db/create_user'
 
 const server = express()
-server.use(bodyParser.json()) // Transforma o body de todas as requisições em um json
+server.use(bodyParser.json()) 
 
 const db = new Db()
 
@@ -27,6 +27,6 @@ server.post('/user/create', (req: Request, res: Response)=>{
 })
 
 // Todas as requisições serão verificadas antes de prosseguirem
-//server.use(authMiddleware)
-server.post('/teste')
+
+server.post('/teste', authMiddleware)
 server.listen(3000, () => console.log('[SERVER] SERVER RUNNING AT 3000'))

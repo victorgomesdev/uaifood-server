@@ -28,9 +28,9 @@ export default class Db {
         return await this.users.insertOne(user)
     }
 
-    async getUserData(id: number) {
+    async getUserData(email: string) {
 
-        return await this.users.findOne({ _id: id })
+        return await this.users.findOne({ email: email })
 
     }
 

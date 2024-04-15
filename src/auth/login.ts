@@ -5,12 +5,13 @@ import Db from "../db";
 
 export default async function loginMiddleware(req: Request, res: Response, db: Db) {
 
-    db.getUserData(req.body.id)
+    db.getUserData(req.body.email)
         .then((r) => {
 
             if (r != null) {
 
                 const token = sign({
+                    id: r._id,
                     eml: r.email,
                     nam: r.name
                 },
