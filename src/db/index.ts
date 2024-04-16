@@ -43,4 +43,15 @@ export default class Db {
 
         return await this.devices.findOne({ owner_id: owner, _id: id })
     }
+
+    async editUser(newData: UserProps){
+
+        return await this.users.updateOne({_id: newData._id}, {
+            $set:{
+                name: newData.name,
+                email: newData.email,
+                password: newData.password
+            }
+        })
+    }
 }

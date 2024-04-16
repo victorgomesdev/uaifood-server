@@ -4,7 +4,7 @@ Cadastro de usuário FEITO
 
 Edição de dados de usuário
 
-Recuperação de daos de usuário FEITO
+Recuperação de dados de usuário FEITO
 
 Cadastro de robôs
 

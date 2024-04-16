@@ -27,6 +27,23 @@ server.post('/user/create', (req: Request, res: Response)=>{
 })
 
 // Todas as requisições serão verificadas antes de prosseguirem
+server.use(authMiddleware)
 
-server.post('/teste', authMiddleware)
+server.post('/user/edit', (req: Request, res: Response)=>{
+
+    db.editUser(req.body)
+    .then(r=>{
+        if(r.acknowledged){
+            res.status(200)
+            .setHeader("Content-Type", 'application/json')
+            .json(
+                db.getUserData(req.body._id)
+            )
+        }
+    })
+    .catch(e =>{
+        console.log('[DB] OCORREU UM ERRO AO EDITAR OS DADOS DO USUÁRIO', e)
+        
+    })
+})
 server.listen(3000, () => console.log('[SERVER] SERVER RUNNING AT 3000'))
