@@ -9,7 +9,6 @@ export default async function authMiddleware(req: Request, res: Response, next: 
     try {
 
         const verified = verify(req.body.token, env.SECRET_KEY, { algorithms: ['HS256'] }) as UserProps
-        console.log(verified)
 
         if (verified) {
             db.getUserData(verified.email)

@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb'
-import env from '../../env.json' 
+import env from '../../env.json'
 import { UserProps } from '../types'
 import { DeviceProps } from '../types'
 
@@ -30,7 +30,8 @@ export default class Db {
 
     async getUserData(email: string) {
 
-        return await this.users.findOne({ email: email })
+
+        return await this.users.findOne({ email: email }) as { _id: number, name: string, email: string }
 
     }
 
@@ -44,14 +45,16 @@ export default class Db {
         return await this.devices.findOne({ owner_id: owner, _id: id })
     }
 
-    async editUser(newData: UserProps){
+    async editUser({ name, email, password }: UserProps) {
 
-        return await this.users.updateOne({_id: newData._id}, {
-            $set:{
-                name: newData.name,
-                email: newData.email,
-                password: newData.password
+        const filter = { email: email }
+        const update = {
+            $set: {
+                name: name,
+                password: password,
+                email: email
             }
-        })
+        }
+        return await this.users.updateOne(filter, update, { upsert: true })
     }
 }
