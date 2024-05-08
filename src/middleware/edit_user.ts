@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import Db from ".";
+import Db from "../db";
 
 export default function editUserMiddleware(req: Request, res: Response, next: NextFunction, db: Db) {
 

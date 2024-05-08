@@ -31,12 +31,12 @@ export default async function loginMiddleware(req: Request, res: Response, db: D
             } else {
                 res.status(404)
                     .setHeader("Content-Type", "application/json")
-                    .json({ msg: "Usuário não encontrado.", acess: 'DENIED' })
+                    .json({ status: 'ERR_ACCESSDENIED_USERNOTFOUND' })
             }
         }).catch((e) => {
 
             res.status(500).setHeader("Content-Type", "application/json")
-                .json({ msg: "Não foi possível entrar, por favor tente mais tarde." })
+                .json({ status: 'ERR_ACCESSDENIED_INVALIDUSER' })
 
             console.log("[AUTH] ERRO DE LOGIN:", e)
         })

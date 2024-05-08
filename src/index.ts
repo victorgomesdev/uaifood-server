@@ -3,8 +3,9 @@ import bodyParser from 'body-parser'
 import { authMiddleware, loginMiddleware } from './auth'
 import env from '../env.json'
 import Db from './db'
-import createUserMiddleware from './db/create_user'
-import editUserMiddleware from './db/edit_user'
+import createUserMiddleware from './middleware/create_user'
+import editUserMiddleware from './middleware/edit_user'
+import createDeviceMiddleware from './middleware/create_device'
 
 const server = express()
 const port = 3000
@@ -27,7 +28,7 @@ server.post('/user/login', (rq: Request, rs: Response) => {
 
 // Rota para criação de usuários novos
 server.post('/user/create', (req: Request, res: Response) => {
-    createUserMiddleware(req, res, db) 
+    createUserMiddleware(req, res, db)
 })
 
 // Todas as requisições serão verificadas antes de prosseguirem
@@ -44,6 +45,8 @@ server.post('/user/edit', (req: Request, res: Response, next: NextFunction) => {
         res.status(200)
             .setHeader("Content-Type", 'application/json')
             .json({ _id: data._id, name: data.name, email: data.email })
-    })
-    
+    }
+)
+
+server.post('device/create', (req: Request, res: Response) => createDeviceMiddleware(req, res, db))
 server.listen(port, () => console.log('[SERVER] SERVER RUNNING AT', port))

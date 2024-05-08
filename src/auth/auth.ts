@@ -14,14 +14,14 @@ export default async function authMiddleware(req: Request, res: Response, next: 
             db.getUserData(verified.email)
                 .then(r => r != null ? next() : res.status(401)
                     .setHeader("Content-Type", 'application/json')
-                    .json({ msg: 'Token inválido', access: 'DENIED' }))
+                    .json({ status: 'ERR_ACCESSDENIED_INVALIDTOKEN' }))
         }
 
     } catch (e) {
         console.log("[AUTH] ERRO DE AUTENTICAÇÃO", e)
         res.status(500)
             .setHeader("Content-Type", "application/json")
-            .json({ msg: 'Erro interno do servidor' })
+            .json({ status: 'ERR_ACCESSDENIED_INVALIDTOKEN' })
     }
 
 }

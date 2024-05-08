@@ -2,7 +2,7 @@ Rotas:
 
 Cadastro de usuário FEITO
 
-Edição de dados de usuário
+Edição de dados de usuário FEITO
 
 Recuperação de dados de usuário FEITO
 
@@ -17,3 +17,6 @@ Controles
 Implementar a logica de armazenar a midia
 
 Verificar os códigos de status http
+
+Reescrever os códigos e o status de retorno - padronizar - adicionar validação de campos de entrada,
+criar a lógica de armazenar a imagem, colocar as rotas em arquivos separados com o router

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Db from ".";
+import Db from "../db";
 
 export default async function createUserMiddleware(req: Request, res: Response, db: Db) {
 
