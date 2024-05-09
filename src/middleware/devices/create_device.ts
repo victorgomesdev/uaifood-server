@@ -1,8 +1,7 @@
 import {Response, Request} from 'express'
-import { DeviceProps } from '../types';
-import Db from '../db';
+import db from '../../db';
 
-export default async function createDeviceMiddleware(req: Request, res: Response, db: Db) {
+export default async function createDeviceMiddleware(req: Request, res: Response) {
     db.addDevice({
         name: req.body.name,
         description: req.body.description,

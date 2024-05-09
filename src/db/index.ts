@@ -3,7 +3,7 @@ import env from '../../env.json'
 import { UserProps } from '../types'
 import { DeviceProps } from '../types'
 
-export default class Db {
+class Db {
 
     private connection
     private database
@@ -58,3 +58,7 @@ export default class Db {
         return await this.users.updateOne(filter, update, { upsert: true })
     }
 }
+
+const db = new Db()
+
+export default db

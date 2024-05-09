@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import Db from "../db";
+import db from "../../db";
 
-export default function editUserMiddleware(req: Request, res: Response, next: NextFunction, db: Db) {
+export default function editUserMiddleware(req: Request, res: Response, next: NextFunction) {
 
     const { name, email, password } = req.body
 

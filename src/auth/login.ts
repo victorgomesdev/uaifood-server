@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { sign } from 'jsonwebtoken'
 import env from '../../env.json'
-import Db from "../db";
+import db from "../db";
 
-export default async function loginMiddleware(req: Request, res: Response, db: Db) {
+export default async function loginMiddleware(req: Request, res: Response) {
 
     db.getUserData(req.body.email)
         .then((r) => {

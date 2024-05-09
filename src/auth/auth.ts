@@ -1,10 +1,10 @@
 import { verify } from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
 import env from '../../env.json'
-import Db from '../db'
+import db from '../db'
 import { UserProps } from '../types'
 
-export default async function authMiddleware(req: Request, res: Response, next: NextFunction, db: Db) {
+export default async function authMiddleware(req: Request, res: Response, next: NextFunction) {
 
     try {
 

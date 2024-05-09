@@ -4,6 +4,7 @@ fetch('http://localhost:3000/device/create', {
         "Content-Type": "application/json"
     },
     body: JSON.stringify({
+        token: "hhljfkhdljulduguhdjgfçugugfdugçuigpçfuutguigfp",
         name: 'jhjklglhkgdklj',
         description: 'hgfldkjugfjdgfldkj',
         code: 1,

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Db from "../db";
+import db from "../../db";
 
-export default async function createUserMiddleware(req: Request, res: Response, db: Db) {
+export default async function createUserMiddleware(req: Request, res: Response) {
 
     db.addUser({
         name: req.body.name,
