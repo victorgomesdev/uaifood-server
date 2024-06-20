@@ -6,17 +6,12 @@ Edição de dados de usuário FEITO
 
 Recuperação de dados de usuário FEITO
 
-Cadastro de robôs
-
-Edição de robôs
+Cadastro de robôs FEITO
 
 Recuperação de dados de robôs
 
 Controles
 
-Implementar a logica de armazenar a midia
-
 Verificar os códigos de status http
 
-Reescrever os códigos e o status de retorno - padronizar - adicionar validação de campos de entrada na rota de criação de usuário isso é importante,
-criar a lógica de armazenar a imagem, colocar as rotas em arquivos separados com o router
+Reescrever os códigos e o status de retorno - padronizar - adicionar validação de campos de entrada na rota de criação de usuário isso é importante, colocar as rotas em arquivos separados com o router

@@ -8,7 +8,7 @@ export default async function loginMiddleware(req: Request, res: Response) {
     db.getUserData(req.body.email)
         .then((r) => {
 
-            if (r != null) {
+            if (r != null && r.password === req.body.password) {
 
                 const payload = JSON.stringify({
                     id: r._id,

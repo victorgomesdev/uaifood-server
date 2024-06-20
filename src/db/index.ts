@@ -31,7 +31,7 @@ class Db {
     async getUserData(email: string) {
 
 
-        return await this.users.findOne({ email: email }) as { _id: number, name: string, email: string }
+        return await this.users.findOne({ email: email })
 
     }
 

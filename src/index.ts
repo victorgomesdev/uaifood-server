@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import { authMiddleware, loginMiddleware } from './auth'
 import db from './db'
 import createUserMiddleware from './middleware/users/create_user'
