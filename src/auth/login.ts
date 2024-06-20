@@ -36,7 +36,7 @@ export default async function loginMiddleware(req: Request, res: Response) {
         }).catch((e) => {
 
             res.status(500).setHeader("Content-Type", "application/json")
-                .json({ status: 'ERR_ACCESSDENIED_INVALIDUSER' })
+                .json({ status: 'ERR_INTERNALERROR' })
 
             console.log("[AUTH] ERRO DE LOGIN:", e)
         })

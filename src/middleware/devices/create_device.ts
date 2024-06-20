@@ -1,4 +1,4 @@
-import {Response, Request} from 'express'
+import { Response, Request } from 'express'
 import db from '../../db';
 
 export default async function createDeviceMiddleware(req: Request, res: Response) {
@@ -8,16 +8,20 @@ export default async function createDeviceMiddleware(req: Request, res: Response
         code: req.body.code,
         owner_id: req.body.owner_id,
         imageUrl: req.body.imageUrl
-    }).then((r)=>{
+    }).then((r) => {
 
-        if(r.acknowledged){
+        if (r.acknowledged) {
             res.sendStatus(201)
-            .setHeader("Content-Type", 'application/json')
-            .json({status:"CREATED", id: r.insertedId})
+                .setHeader("Content-Type", 'application/json')
+                .json({ status: "CREATED", id: r.insertedId })
+        } else {
+            res.sendStatus(400)
+                .setHeader('Content-Type', 'application/json')
+                .json({ error: 'ERR_INVALID_DEVICE_CREDENTIALS' })
         }
-    }).catch(e=>{
-        res.sendStatus(400)
-        .setHeader("Content-Type", 'application/json')
-        .json({status: "ERR_NOTSUCCESS"})
+    }).catch(e => {
+        res.sendStatus(500)
+            .setHeader("Content-Type", 'application/json')
+            .json({ ERROR: "ERR_INTERNALERROR" })
     })
 }

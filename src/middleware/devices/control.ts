@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
+import mqttClient from "../../mqtt";
 
-export default async function remoteControl(){
+export default async function remoteControlMiddleware(){
 
+    mqttClient.publish('control', '')
 }

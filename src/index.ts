@@ -4,7 +4,7 @@ import db from './db'
 import createUserMiddleware from './middleware/users/create_user'
 import userController from './middleware/users'
 import deviceController from './middleware/devices'
-
+import mqttClient from './mqtt'
 
 const server = express()
 const port = 3000
@@ -18,7 +18,9 @@ db.connect()
         // Caso não for possível conectar-se ao MongoDb Atlas, o processo é finalizado imediatamente e é exibido o erro que ocorreu.
         process.exit(1)
     })
-
+mqttClient.on('connect', (msg) => {
+    console.log('[MQTT] BROKER CONECTADO')
+})
 // Rota para os usuários fazerem o login
 server.post('/user/login', loginMiddleware)
 
@@ -31,4 +33,6 @@ server.use(userController)
 server.use(deviceController)
 
 
-server.listen(port, () => console.log('[SERVER] SERVER RUNNING AT', port))
+server.listen(port, () => {
+    console.log('[SERVER] SERVER RUNNING AT', port)
+})

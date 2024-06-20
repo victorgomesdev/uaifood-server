@@ -12,7 +12,12 @@ export default function editUserMiddleware(req: Request, res: Response, next: Ne
             } else {
                 res.status(404)
                     .setHeader("Content-Type", 'application/json')
-                    .json({ msg: 'Usuário não encontrado' })
+                    .json({ error: 'ERR_USERNOTFOUND' })
             }
+        }).catch(e => {
+            res.sendStatus(500)
+                .setHeader('Content-Type', 'application/json')
+                .json({ error: 'ERR_INTERNATERROR' })
+            console.log(e)
         })
 }

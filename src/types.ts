@@ -3,7 +3,7 @@ export type UserProps = {
     name: string
     email: string
     password?: string
-    slug: string
+    slug?: string
 }
 
 export type DeviceProps = {
