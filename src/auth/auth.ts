@@ -5,29 +5,21 @@ import db from '../db'
 import { UserProps } from '../types'
 
 export default async function authMiddleware(req: Request, res: Response, next: NextFunction) {
-
     try {
-
         const verified = verify(req.body.token, env.SECRET_KEY, { algorithms: ['HS256'] }) as UserProps
 
         if (verified) {
-            db.getUserData(verified.email)
-                .then(r => {
-                    if (r !== null) {
-                        next()
-                    } else {
-                        res.status(401)
-                            .setHeader("Content-Type", 'application/json')
-                            .json({ error: 'ERR_ACCESSDENIED_INVALIDTOKEN' })
-                    }
-                })
+            const user = await db.getUserData(verified.email)
+            if (user !== null) {
+                next()
+            } else {
+                res.status(401).json({ error: 'ERR_ACCESSDENIED_INVALIDTOKEN' })
+            }
+        } else {
+            res.status(401).json({ error: 'ERR_ACCESSDENIED_INVALIDTOKEN' })
         }
-
     } catch (e) {
         console.log("[AUTH] ERRO DE AUTENTICAÇÃO", e)
-        res.status(500)
-            .setHeader("Content-Type", "application/json")
-            .json({ error: 'ERR_ACCESSDENIED_INTERNALERROR' })
+        res.status(500).json({ error: 'ERR_ACCESSDENIED_INTERNALERROR' })
     }
-
 }
