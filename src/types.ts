@@ -8,11 +8,9 @@ export type UserProps = {
 
 export type DeviceProps = {
     _id?: string
-    code: number
     name: string
     description: string
     owner_id: string
-    imageUrl: string
 }
 
 export type LoginReq = {

@@ -5,9 +5,7 @@ export default async function createDeviceMiddleware(req: Request, res: Response
     db.addDevice({
         name: req.body.name,
         description: req.body.description,
-        code: req.body.code,
         owner_id: req.body.owner_id,
-        imageUrl: req.body.imageUrl
     }).then((r) => {
 
         if (r.acknowledged) {
