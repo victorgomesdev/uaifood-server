@@ -40,9 +40,15 @@ class Db {
         return await this.devices.insertOne(device)
     }
 
-    async getDeviceData(owner: number, id: number) {
+    async getDeviceData(owner: string, id: string) {
 
         return await this.devices.findOne({ owner_id: owner, _id: id })
+    }
+
+    async listDevices(ownerId: string){
+
+        const devices = await this.devices.find({owner_id: ownerId}).toArray()
+        return devices
     }
 
     async editUser({ name, email, password }: UserProps) {

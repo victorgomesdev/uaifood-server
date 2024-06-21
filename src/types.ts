@@ -7,11 +7,11 @@ export type UserProps = {
 }
 
 export type DeviceProps = {
-    _id?: number
+    _id?: string
     code: number
     name: string
     description: string
-    owner_id: number
+    owner_id: string
     imageUrl: string
 }
 
