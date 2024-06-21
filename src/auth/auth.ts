@@ -12,9 +12,15 @@ export default async function authMiddleware(req: Request, res: Response, next: 
 
         if (verified) {
             db.getUserData(verified.email)
-                .then(r => r != null ? next() : res.status(401)
-                    .setHeader("Content-Type", 'application/json')
-                    .json({ error: 'ERR_ACCESSDENIED_INVALIDTOKEN' }))
+                .then(r => {
+                    if (r !== null) {
+                        next()
+                    } else {
+                        res.status(401)
+                            .setHeader("Content-Type", 'application/json')
+                            .json({ error: 'ERR_ACCESSDENIED_INVALIDTOKEN' })
+                    }
+                })
         }
 
     } catch (e) {
